@@ -16,7 +16,6 @@ class UsersController < ApplicationController
 
   # POST: /users
   post "/users" do
-    binding.pry
     user = User.create(params)
     session[:user_id] = user.id
     redirect "/"
