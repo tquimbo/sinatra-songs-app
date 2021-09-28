@@ -9,6 +9,12 @@ class UsersController < ApplicationController
     erb :"users/new.html"
   end
 
+  get "/users/:id" do
+    @user = User.find(params[:id])
+    erb :"users/show.html"
+  end
+
+
   # # GET: /users
   # get "/users" do
   #   erb :"/users/index.html"
