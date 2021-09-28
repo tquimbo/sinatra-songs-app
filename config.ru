@@ -5,4 +5,6 @@ require './config/environment'
 #end
 
 run ApplicationController
+use SessionsController
+use SongsController
 use UsersController
