@@ -6,9 +6,9 @@ class ApplicationController < Sinatra::Base
     set :public_folder, 'public'
     set :views, 'app/views'
     enable :sessions
-    set :session_secret ENV["SESSION_SECRET"]
+    set :session_secret, ENV["SESSION_SECRET"]
   end
-
+ 
   get "/" do
     erb :welcome
   end
@@ -18,10 +18,11 @@ class ApplicationController < Sinatra::Base
     def logged_in?
       !!session[:user_id]
     end
+ 
 
     def current_user
-      loggedin_? && User.find[:user_id)
-
+      loggedin_? && User.find([:user_id])
+    end
   end
 
 end
