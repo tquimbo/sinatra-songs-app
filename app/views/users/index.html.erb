@@ -1,1 +1,8 @@
-<h1>This is the Model's index page.</h1>
+<h1>Here's all the Music Fans in our Database</h1>
+<ul>
+<% @users.each do |user| %>
+  <li>
+    <a href="/users/<%= user.id %>"><%= user.username %></a>
+  </li>
+<% end %>
+</ul>
