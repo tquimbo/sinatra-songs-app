@@ -18,6 +18,19 @@ class SongsController < ApplicationController
         @song = Song.new
         erb :"songs/new.html"
       end
+
+      post "/songs" do
+        song = current_user.songs.create(params[:song])
+       redirect "/songs/#{song.id}"
+      end   
+
+      
+        get "/songs/:id/edit" do
+            @song = Song.find(params[:id])
+            erb :"songs/edit.html"
+        end
+
+  patch "/songs/:id"
       
    
 
