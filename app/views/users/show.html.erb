@@ -1,3 +1,8 @@
-<h1>This is the show page for an individual instance of your model.</h1>
+<h1><%= @user.username %></h1>
+<% if @user.songs.any?%>
+<h3>Here is your songs:</h3>
+  <% @user.songs.each do |song| %>
+    <a href="/song/<%= song.id %>"><%=song.name%></a>
+  <% end %>
+  <% end %>
 
-<p> Get info about user </p?
