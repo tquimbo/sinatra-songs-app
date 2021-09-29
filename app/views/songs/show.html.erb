@@ -2,3 +2,12 @@
 <p>Color: <%= @song.color %></p>
 <p>Age: <%= @song.age %></p>
 
+
+<form action="/songs/<%= @song.id %>/birthday" method="post">
+<input type="hidden" name="_method" value="patch">
+<input type="submit" value="It's <%= @song.name %>'s birthday!!!!!">
+</form>
+
+<form action="/songs/<%= @song.id %>" method="post">
+<input type="hidden" name="_method" value="delete">
+<input type="submit" value="Delete this Shark!">

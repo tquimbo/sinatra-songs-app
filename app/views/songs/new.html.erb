@@ -1,0 +1,10 @@
+<form action="/songs" method="post">
+  <label for="name">Name:</label><br>
+  <input type="text" id="name" name="song[name]" value=<%= @song.name %>><br>
+  <label for="color">Color:</label><br>
+  <input type="text" id="artist" name="song[artist]" value=<%= @song.artist %>><br>
+  <label for="age">Age:</label><br>
+  <input type="text" id="album" name="song[album]" min="0" value=<%= @song.album %>><br>
+  <input type="number" id="rating" name="song[rating]" min="0" max="10" value=<%= @song.rating %>><br>
+  <input type="submit" value="Sumbit your rating!">
+</form>
