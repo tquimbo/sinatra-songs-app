@@ -27,13 +27,18 @@ class UsersController < ApplicationController
 
   # POST: /users
   post "/users" do
-    user = User.create(params)
-    session[:user_id] = user.id
-    redirect "/"
-
-    # redirect "/users"
+    user = User.new(params)
+    if user.save
+      flash[:success] = ["Account successfully created!"]
+      session[:user_id] = user.id
+      redirect "/"
+    else
+      # here's where we handle errors
+      flash[:errors] = user.errors.full_messages
+      redirect "/users/new"
+    end
   end
-
+  
   # GET: /users/5
   # get "/users/:id" do
   #   erb :"/users/show.html"

@@ -23,9 +23,20 @@
     
     <% else %>
       <a href-"/users/new">Sign Up!</a>
+      <a href-"/users/new">Login!</a>
+
       <% end %>
       </nav>
   
+      <% if flash[:errors] %>
+      <ul class="errors">
+        <% flash[:errors].each do |error|%>
+          <li><%=error%></li>
+        <% end %>
+      </ul>
+    <% end %>
+
+
     <div class="wrapper">
 
         <%= yield %>

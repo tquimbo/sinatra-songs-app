@@ -6,11 +6,13 @@ class SongsController < ApplicationController
     # end
 
     get "/songs" do
-        if params[:search]
-          @songs = Song.where('name LIKE ?', "%#{params[:search]}%")
-        else
-          @songs = Song.all
-        end
+        # if params[:search]
+        #   @songs = Song.where('name LIKE ?', "%#{params[:search]}%")
+        # else
+        #   @songs = Song.all
+        # end
+        # erb :"songs/index.html"
+        @songs = Song.all
         erb :"songs/index.html"
       end
 
