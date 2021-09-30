@@ -39,14 +39,14 @@ class SongsController < ApplicationController
     
 #   end
 
-patch "/sharks/:id" do
-    shark = Shark.find(params[:id])
-    if shark.user == current_user
-      if shark.update(params[:shark])
-        redirect "/sharks/#{shark.id}"
+patch "/songs/:id" do
+    song = Song.find(params[:id])
+    if song.user == current_user
+      if song.update(params[:song])
+        redirect "/songs/#{song.id}"
       else
-        flash[:errors] = shark.errors.full_messages
-        redirect "/sharks/#{shark.id}/edit"
+        flash[:errors] = song.errors.full_messages
+        redirect "/songs/#{song.id}/edit"
       end
     end
 end
