@@ -5,11 +5,16 @@ class UsersController < ApplicationController
     erb :"users/index.html"
   end
 
+  get "/profile" do
+    redirect "/users/#{current_user.id}"
+  end
+
   get "/users/new" do
     erb :"users/new.html"
   end
 
   get "/users/:id" do
+    binding.pry
     @user = User.find(params[:id])
     erb :"users/show.html"
   end
@@ -26,6 +31,19 @@ class UsersController < ApplicationController
   # end
 
   # POST: /users
+  # post "/users" do
+  #   user = User.new(params)
+  #   if user.valid?
+  #     #flash[:success] = ["Account successfully created!"]
+  #     session[:user_id] = user.id
+  #     redirect "/"
+  #   else
+  #     # here's where we handle errors
+  #     flash[:errors] = user.errors.full_messages
+  #     redirect "/users/new"
+  #   end
+  # end
+
   post "/users" do
     user = User.new(params)
     if user.save
@@ -38,7 +56,7 @@ class UsersController < ApplicationController
       redirect "/users/new"
     end
   end
-  
+
   # GET: /users/5
   # get "/users/:id" do
   #   erb :"/users/show.html"
