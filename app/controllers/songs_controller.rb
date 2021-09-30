@@ -6,13 +6,11 @@ class SongsController < ApplicationController
     # end
 
     get "/songs" do
-        # if params[:search]
-        #   @songs = Song.where('name LIKE ?', "%#{params[:search]}%")
-        # else
-        #   @songs = Song.all
-        # end
-        # erb :"songs/index.html"
-        @songs = Song.all
+        if params[:search]
+          @songs = Song.where('name LIKE ?', "%#{params[:search]}%")
+        else
+          @songs = Song.all
+        end
         erb :"songs/index.html"
       end
 
@@ -54,8 +52,9 @@ end
 
   delete "/songs/:id" do
     song = Song.find(params[:id])
+    if song.user == current_user
     song.destroy
-    redirect "/songs/#{song.id}"
+    redirect "/songs/"
   end
       
    
