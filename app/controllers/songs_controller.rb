@@ -32,12 +32,25 @@ class SongsController < ApplicationController
             erb :"songs/edit.html"
         end
 
-  patch "/songs/:id" do
-    song = Song.find(params[:id])
-    song.update(params[:song])
-    redirect "/songs/#{song.id}"
-  end
+#   patch "/songs/:id" do
+#     song = Song.find(params[:id])
+#     song.update(params[:song])
+#     redirect "/songs/#{song.id}"
+    
+#   end
 
+patch "/sharks/:id" do
+    shark = Shark.find(params[:id])
+    if shark.user == current_user
+      if shark.update(params[:shark])
+        redirect "/sharks/#{shark.id}"
+      else
+        flash[:errors] = shark.errors.full_messages
+        redirect "/sharks/#{shark.id}/edit"
+      end
+    end
+end
+  
 
   delete "/songs/:id" do
     song = Song.find(params[:id])
