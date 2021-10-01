@@ -56,10 +56,8 @@ end
     song.destroy
     redirect "/songs/"
   end
-      
-   
+    
 
-
-   
+end
 
 end
