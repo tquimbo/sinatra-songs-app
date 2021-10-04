@@ -21,7 +21,7 @@ class ApplicationController < Sinatra::Base
     end
 
     def current_user
-      loggedin_? && User.find([:user_id])
+      logged_in? && User.find([:user_id])
     end
    
     def redirect_if_not_logged_in
