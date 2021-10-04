@@ -12,23 +12,27 @@ class SongsController < ApplicationController
           @songs = Song.all
         end
         erb :"songs/index.html"
-      end
+    end
 
-      get "/songs/new" do
+    get "/songs/new" do
         @song = Song.new
         erb :"songs/new.html"
-      end
-
-      post "/songs" do
+    end
+    
+    get "/songs/:id" do
+      @song = Song.find(params[:id])
+      erb :"songs/show.html"
+  end
+    post "/songs" do
         song = current_user.songs.create(params[:song])
        redirect "/songs/#{song.id}"
-      end   
+    end   
 
       
-        get "/songs/:id/edit" do
-            @song = Song.find(params[:id])
-            erb :"songs/edit.html"
-        end
+    get "/songs/:id/edit" do
+          @song = Song.find(params[:id])
+          erb :"songs/edit.html"
+      end
 
 #   patch "/songs/:id" do
 #     song = Song.find(params[:id])
