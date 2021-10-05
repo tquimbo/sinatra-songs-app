@@ -2,10 +2,10 @@
 <ul>
 <form method="get" action="/songs">
   <input type="text" name="search">
-  <input type="submit" value="Search for a shark!">
+  <input type="submit" value="Search for a song!">
 </form>
 
 <% @songs.each do |song| %>
-  <li><a href="songs/<%=song.id%>"><%= shark.name %></a></li>
+  <li><a href="songs/<%=song.id%>"><%= song.name %></a></li>
 <% end %>
 </ul>

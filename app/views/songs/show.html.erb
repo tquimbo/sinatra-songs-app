@@ -4,9 +4,10 @@
 <p>Album: <%= @song.album %></p>
 <p>Rating: <%= @song.rating %></p>
 
-
+<form action="a href=/songs/:id/edit"> method="get">
+<input type="hidden" name="_method" value="edit">
+<input type="submit" value="Edit this Song!">
 
 <form action="/songs/<%= @song.id %>" method="post">
 <input type="hidden" name="_method" value="delete">
 <input type="submit" value="Delete this Song!">
-
