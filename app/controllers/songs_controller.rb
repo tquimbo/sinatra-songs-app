@@ -29,6 +29,7 @@ class SongsController < ApplicationController
           redirect_if_not_logged_in
           @song = Song.find(params[:id])
           erb :"songs/edit.html"
+          # redirect "/songs/"
     end  
 
     patch "/songs/:id" do
