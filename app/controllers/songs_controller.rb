@@ -1,6 +1,7 @@
 class SongsController < ApplicationController
 
     get "/songs/new" do
+       redirect_if_not_logged_in
       @song = Song.new
       erb :"songs/new.html"
     end
@@ -24,15 +25,13 @@ class SongsController < ApplicationController
       erb :"songs/show.html"
     end
 
-
     get "/songs/:id/edit" do
           redirect_if_not_logged_in
           @song = Song.find(params[:id])
           erb :"songs/edit.html"
-          # redirect "/songs/"
     end  
 
-    patch "/songs/:id" do
+    patch "/songs/:id/edit" do
         song = Song.find(params[:id])
         if song.user == current_user
           if song.update(params[:song])
@@ -41,6 +40,7 @@ class SongsController < ApplicationController
             flash[:errors] = song.errors.full_messages
             redirect "/songs/#{song.id}/edit"
           end
+          redirect "/songs"
         end
      end
   
@@ -48,7 +48,7 @@ class SongsController < ApplicationController
     song = Song.find(params[:id])
     if song.user == current_user
     song.destroy
-    redirect "/songs/"
+    redirect "/songs"
   end
     
 

@@ -30,4 +30,9 @@ class ApplicationController < Sinatra::Base
 
   end
 
+  post "/songs/:id" do
+    song = current_user.songs.create(params[:song])
+    redirect "/songs/#{song.id}"
+  end
+
 end
