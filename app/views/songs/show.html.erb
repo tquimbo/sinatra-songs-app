@@ -4,13 +4,13 @@
 <p>Album: <%= @song.album %></p>
 <p>Rating: <%= @song.rating %></p>
 
-
+<% if current_user == @song.user %>
+<a href="/songs/<%= @song.id %>/edit">Edit <%= @song.name %></a>
 
 <form action="/songs/<%= @song.id %>/edit" method="post">
 <input type="hidden" name="_method" value="patch">
 <input type="submit" value="Edit this Song!">
 </form>
-
 
 <form action="/songs/<%= @song.id %>" method="post">
 <input type="hidden" name="_method" value="delete">
