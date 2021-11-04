@@ -31,16 +31,21 @@ class SongsController < ApplicationController
         erb :"songs/edit.html"
   end  
 
-  put "/songs/:id" do
+
+
+  patch "/songs/:id" do
       song = Song.find(params[:id])
+      binding.pry
       if song.user == current_user
-        song.update(params[:song])
+        if song.update(params[:song])
           redirect "/songs/#{song.id}"
         else
-          flash[:errors] = song.errors.full_messages
+          flash[:errors] = xong.errors.full_messages
           redirect "/songs/#{song.id}/edit"
         end
-        redirect "/songs"
+        else
+          "Puts you are unable to edit another person's song."
+        end
       end
    
 
@@ -48,6 +53,8 @@ delete "/songs/:id" do
   song = Song.find(params[:id])
   if song.user == current_user
   song.destroy
+  else 
+    puts "You cannot delete other people's songs"
   redirect "/songs"
 end
   
