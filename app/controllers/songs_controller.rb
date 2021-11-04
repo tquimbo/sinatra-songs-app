@@ -31,10 +31,10 @@ class SongsController < ApplicationController
         erb :"songs/edit.html"
   end  
 
-  patch "/songs/:id" do
+  put "/songs/:id" do
       song = Song.find(params[:id])
       if song.user == current_user
-        if song.update(params[:song])
+        song.update(params[:song])
           redirect "/songs/#{song.id}"
         else
           flash[:errors] = song.errors.full_messages
@@ -42,7 +42,7 @@ class SongsController < ApplicationController
         end
         redirect "/songs"
       end
-   end
+   
 
 delete "/songs/:id" do
   song = Song.find(params[:id])
