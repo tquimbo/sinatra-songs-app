@@ -1,14 +1,19 @@
 class SongsController < ApplicationController
 
   get "/songs/new" do
-     redirect_if_not_logged_in
+    redirect_if_not_logged_in
     @song = Song.new
     erb :"songs/new.html"
   end
 
   post "/songs" do
     song = current_user.songs.create(params[:song])
-    redirect "/songs/#{song.id}"
+    if song.valid?
+      redirect "/songs/#{song.id}"
+    else
+      flash[:errors] = song.errors.full_messages
+    redirect "/songs/new"
+    end
   end   
 
   get "/songs" do
