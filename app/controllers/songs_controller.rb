@@ -9,7 +9,7 @@ class SongsController < ApplicationController
   post "/songs" do
     @song = current_user.songs.create(params[:song])
     if @song.valid?
-      redirect "/songs/#{song.id}"
+      redirect "/songs/#{@song.id}"
     else
       flash[:errors] = song.errors.full_messages
     redirect "/songs/new"
@@ -51,17 +51,17 @@ class SongsController < ApplicationController
   #     end
 
   patch "/songs/:id" do
-    song = Song.find(params[:id])
-    if song.user == current_user
-      if song.update(name: params[:name], artist: params[:artist], album: params[:album], rating: params[:rating])
-        redirect "/songs/#{song.id}"
+    @song = Song.find(params[:id])
+    if @song.user == current_user
+      @song.update(name: params[:name], artist: params[:artist], album: params[:album], rating: params[:rating])
+      binding.pry
+        redirect "/songs/#{@song.id}"
       else
-        redirect "/songs/#{song.id}/edit"
+        redirect "/songs/#{@song.id}/edit"
       end
-    else
-      redirect '/songs'
     end
-  end
+    end
+  
 
 
   delete "/songs/:id" do
