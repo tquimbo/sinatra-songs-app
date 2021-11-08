@@ -54,7 +54,6 @@ class SongsController < ApplicationController
     @song = Song.find(params[:id])
     if @song.user == current_user
       @song.update(name: params[:name], artist: params[:artist], album: params[:album], rating: params[:rating])
-      binding.pry
         redirect "/songs/#{@song.id}"
       else
         redirect "/songs/#{@song.id}/edit"
@@ -75,5 +74,4 @@ class SongsController < ApplicationController
 end
 
 
-end
 
