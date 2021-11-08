@@ -51,13 +51,13 @@ class SongsController < ApplicationController
   #     end
 
   patch "/songs/:id" do
-    @song = Song.find(params[:id])
+    find_song
     if @song.user == current_user
-      @song.update(name: params[:name], artist: params[:artist], album: params[:album], rating: params[:rating])
-      binding.pry
+      #if @song.update(name: params[:name], artist: params[:artist], album: params[:album], rating: params[:rating])
+      if @song.update(params[:song])
         redirect "/songs/#{@song.id}"
       else
-        redirect "/songs/#{@song.id}/edit"
+        redirect "/songs/#{song.id}/edit"
       end
     end
     end
@@ -75,5 +75,12 @@ class SongsController < ApplicationController
 end
 
 
+private
+
+def find_song
+  @song = Song.find_by_id(params[:id])
 end
 
+
+
+end
