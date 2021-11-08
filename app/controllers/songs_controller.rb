@@ -65,11 +65,9 @@ class SongsController < ApplicationController
 
 
   delete "/songs/:id" do
-  song = Song.find(params[:id])
-    if song.user == current_user
-    song.destroy
-    else 
-      puts "You cannot delete other people's songs"
+    find_song
+    if @song.user == current_user
+    @song.destroy
     redirect "/songs"
     end 
 end

@@ -6,14 +6,9 @@
 
 <% if current_user == @song.user %>
 
-<a href="/songs/<%= @song.id %>/edit">Edit <%= @song.name %></a>
 
+<a href="/songs/<%= @song.id %>/edit">Edit Song </a>
 
-
-<form action="/songs/<%= @song.id %>/edit" method="post">
-<input type="hidden" name="_method" value="patch">
-<input type="submit" value="Edit this Song!">
-</form>
 
 
 <form action="/songs/<%= @song.id %>" method="post">
