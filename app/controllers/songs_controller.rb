@@ -36,24 +36,9 @@ class SongsController < ApplicationController
     erb :"songs/edit.html"
   end
 
-  # patch "/songs/:id" do
-  #     song = Song.find(params[:id])
-  #     if song.user == current_user
-  #       if song.update(params[:id])
-  #         redirect "/songs/#{song.id}"
-  #       else
-  #         flash[:errors] = xong.errors.full_messages
-  #         redirect "/songs/#{song.id}/edit"
-  #       end
-  #       else
-  #         "Puts you are unable to edit another person's song."
-  #       end
-  #     end
-
   patch "/songs/:id" do
     find_song
     if @song.user == current_user
-      #if @song.update(name: params[:name], artist: params[:artist], album: params[:album], rating: params[:rating])
       if @song.update(params[:song])
         redirect "/songs/#{@song.id}"
       else
@@ -78,7 +63,5 @@ private
 def find_song
   @song = Song.find_by_id(params[:id])
 end
-
-
 
 end
